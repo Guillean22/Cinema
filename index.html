@@ -10,11 +10,19 @@
 
 		<label><h3>Titre : </h3></label>
 		<input type="text" ng-model="query" placeholder="Enter a Movie Title here">
+		<select ng-model="order">
+			<option value="titre">Organiser par Titre</option>
+			<option value="year">Organiser par Année</option>
+		</select>
 
-		<div ng-init="Titles=['Django', 'Mars Attack', 'Inception', 'The Man From Earth']">
-			<ul>
-				<li ng-repeat="Title in Titles | filter:query">{{Title}}</li>
-			</ul>
+		<div ng-init="Titles=[{titre:'Django', year:'2008'}, {titre:'Mars Attack', year:'1998'}, {titre:'Inception', year:'2004'}, {titre:'The Man From Earth', year:'2009'}]">
+			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order">
+				<p>
+					<strong>{{Title.titre}}</strong>
+					<br>
+					{{Title.year}}
+				</p>
+			</div>
 		</div>
 
 
