@@ -2,21 +2,45 @@
 <html>
 	<head>
 		<title>Cinema Database</title>
+
+		<script src="./libs/angular.min.js"></script>
 	</head>
 
 	<body ng-app>
 
 		<h1><u>Rechercher un Film</u></h1>
 
-		<label><h3>Titre : </h3></label>
 		<input type="text" ng-model="query" placeholder="Enter a Movie Title here">
+		<select ng-model="search">
+			<option value="titre">Rechercher par Titre</option>
+			<option value="year">Rechercher par Année</option>
+		</select>
+
+		<br>
+		<br>
 		<select ng-model="order">
 			<option value="titre">Organiser par Titre</option>
 			<option value="year">Organiser par Année</option>
 		</select>
+		
 
-		<div ng-init="Titles=[{titre:'Django', year:'2008'}, {titre:'Mars Attack', year:'1998'}, {titre:'Inception', year:'2004'}, {titre:'The Man From Earth', year:'2009'}]">
-			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order">
+		<h3><u>Liste Des résultats :</u></h3>
+		<div ng-init="Titles=[{titre:'Django', year:'2008'}, {titre:'Mars Attack', year:'1998'}, {titre:'Inception', year:'2004'}, {titre:'The Man From Earth', year:'2009'}]" ng-switch="search">
+			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order" ng-switch-when="titre">
+				<p>
+					<strong>{{Title.titre}}</strong>
+					<br>
+					{{Title.year}}
+				</p>
+			</div>
+			<div ng-repeat="Title in Titles | filter:{year:query} | orderBy:order" ng-switch-when="year">
+				<p>
+					<strong>{{Title.titre}}</strong>
+					<br>
+					{{Title.year}}
+				</p>
+			</div>
+			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order" ng-switch-default>
 				<p>
 					<strong>{{Title.titre}}</strong>
 					<br>
@@ -25,7 +49,5 @@
 			</div>
 		</div>
 
-
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
 	</body>
 </html>
