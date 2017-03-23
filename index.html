@@ -25,9 +25,9 @@
 			<option value="genre">Organiser par Genre</option>
 		</select>
 		
-
 		<h3><u>Liste Des résultats :</u></h3>
 		<div ng-init="Titles=[{titre:'Django', year:'2008', genre:'Western'}, {titre:'Mars Attack', year:'1998', genre:'Science-fiction'}, {titre:'Inception', year:'2004', genre:'Thriller'}, {titre:'The Man From Earth', year:'2009', genre:'Science-fiction'}, {titre:'Pulp Fiction', year:'1994', genre:'Policier'}]" ng-switch="search">
+
 			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order" ng-switch-when="titre">
 				<p>
 					<strong>{{Title.titre}}</strong>
@@ -46,15 +46,6 @@
 					{{Title.genre}}
 				</p>
 			</div>
-			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order" ng-switch-default>
-				<p>
-					<strong>{{Title.titre}}</strong>
-					<br>
-					{{Title.year}}
-					<br>
-					{{Title.genre}}
-				</p>
-			</div>
 			<div ng-repeat="Title in Titles | filter:{genre:query} | orderBy:order" ng-switch-when="genre">
 				<p>
 					<strong>{{Title.titre}}</strong>
@@ -64,6 +55,16 @@
 					{{Title.genre}}
 				</p>
 			</div>
+			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order" ng-switch-default>
+				<p>
+					<strong>{{Title.titre}}</strong>
+					<br>
+					{{Title.year}}
+					<br>
+					{{Title.genre}}
+				</p>
+			</div>
+
 		</div>
 
 	</body>
