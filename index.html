@@ -3,7 +3,7 @@
 	<head>
 		<title>Cinema Database</title>
 
-		<script src="./libs/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.js"></script>
 	</head>
 
 	<body ng-app>
@@ -37,6 +37,7 @@
 					{{Title.genre}}
 				</p>
 			</div>
+
 			<div ng-repeat="Title in Titles | filter:{year:query} | orderBy:order" ng-switch-when="year">
 				<p>
 					<strong>{{Title.titre}}</strong>
@@ -46,6 +47,7 @@
 					{{Title.genre}}
 				</p>
 			</div>
+
 			<div ng-repeat="Title in Titles | filter:{genre:query} | orderBy:order" ng-switch-when="genre">
 				<p>
 					<strong>{{Title.titre}}</strong>
@@ -55,6 +57,7 @@
 					{{Title.genre}}
 				</p>
 			</div>
+
 			<div ng-repeat="Title in Titles | filter:{titre:query} | orderBy:order" ng-switch-default>
 				<p>
 					<strong>{{Title.titre}}</strong>
